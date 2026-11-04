@@ -9,4 +9,6 @@ Application security protects software and user data from unauthorized access.
 5. Data Protection – Protect sensitive information.
 6. HTTPS – Secure communication.
 
-**Conclusion:** Security helps build safe and reliable applications.
+**Conclusion:** 
+
+Security helps build safe and reliable applications.
