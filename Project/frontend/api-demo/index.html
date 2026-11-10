@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header>
+            <h1>User Dashboard</h1>
+            <p>Users fetched from a public API</p>
+        </header>
+
+        <!-- Loading State -->
+        <p id="loading" class="loading" hidden>
+            Loading users...
+        </p>
+
+        <!-- Error State -->
+        <p id="error" class="error" hidden></p>
+
+        <!-- Success State -->
+        <section
+            id="user-container"
+            class="user-container"
+        ></section>
+
+        <button id="retry-btn" hidden>
+            Try Again
+        </button>
+
+    </main>
+
+    <script type="module" src="./dist/app.js"></script>
+
+</body>
+</html>

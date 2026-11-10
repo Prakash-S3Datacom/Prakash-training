@@ -1,0 +1,24 @@
+{
+  "name": "prakash-training",
+  "version": "1.0.0",
+  "description": "A dedicated repository for S3 Datacom internship training, containing daily assignments, practical exercises, technical documentation, and project development work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Prakash-S3Datacom@github.com/Prakash-S3Datacom/Prakash-training.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Prakash-S3Datacom/Prakash-training/issues"
+  },
+  "homepage": "https://github.com/Prakash-S3Datacom/Prakash-training#readme",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

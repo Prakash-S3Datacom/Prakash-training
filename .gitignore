@@ -1,1 +1,23 @@
 .git-safety-copy/
+
+# Node.js dependencies
+node_modules/
+
+# TypeScript generated files
+dist/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# Generated TypeScript build files
+dist/
+
+# Node dependencies
+node_modules/
+
+# Accidental temporary file
+tatus

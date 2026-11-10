@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typed API Client</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Typed API Client</h1>
+        <p>Users, Posts and Comments from JSONPlaceholder API</p>
+    </header>
+
+    <main>
+
+        <p id="loading">Loading API data...</p>
+
+        <div id="error" class="error" hidden></div>
+
+        <button id="retry-btn" hidden>Retry</button>
+
+        <section>
+            <h2>Users</h2>
+            <div id="users" class="card-container"></div>
+        </section>
+
+        <section>
+            <h2>Posts</h2>
+            <div id="posts" class="card-container"></div>
+        </section>
+
+        <section>
+            <h2>Comments</h2>
+            <div id="comments" class="card-container"></div>
+        </section>
+
+    </main>
+
+    <script type="module" src="./dist/app.js"></script>
+
+</body>
+
+</html>
