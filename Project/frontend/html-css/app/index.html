@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TaskFlow</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="../index.html" class="logo">TaskFlow</a>
+
+        <nav aria-label="Dashboard navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="tasks.html">My Tasks</a>
+            <a href="../index.html">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <section class="welcome">
+            <p class="eyebrow">YOUR WORKSPACE</p>
+            <h1>Welcome back!</h1>
+            <p>Here is an overview of your productivity.</p>
+        </section>
+
+        <section class="stats-grid" aria-label="Task statistics">
+
+            <article class="stat-card">
+                <p>Total Tasks</p>
+                <h2>12</h2>
+            </article>
+
+            <article class="stat-card">
+                <p>Completed</p>
+                <h2>08</h2>
+            </article>
+
+            <article class="stat-card">
+                <p>Pending</p>
+                <h2>04</h2>
+            </article>
+
+        </section>
+
+        <section class="recent-tasks">
+            <div class="section-title">
+                <h2>Recent Tasks</h2>
+                <a href="tasks.html">View All Tasks →</a>
+            </div>
+
+            <article class="task-item">
+                <div>
+                    <h3>Complete HTML Assignment</h3>
+                    <p>Practice semantic HTML elements.</p>
+                </div>
+                <span class="status completed">Completed</span>
+            </article>
+
+            <article class="task-item">
+                <div>
+                    <h3>Learn CSS Flexbox</h3>
+                    <p>Practice responsive layouts.</p>
+                </div>
+                <span class="status pending">Pending</span>
+            </article>
+
+            <article class="task-item">
+                <div>
+                    <h3>Build TaskFlow UI</h3>
+                    <p>Create dashboard and task pages.</p>
+                </div>
+                <span class="status pending">Pending</span>
+            </article>
+
+        </section>
+    </main>
+
+</body>
+</html>

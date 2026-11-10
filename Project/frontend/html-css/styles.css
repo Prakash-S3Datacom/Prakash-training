@@ -1,0 +1,607 @@
+
+/* =========================
+   1. CSS VARIABLES
+========================= */
+
+:root {
+    --primary: #6558d3;
+    --primary-dark: #5144b8;
+    --background: #f8f8fc;
+    --surface: #ffffff;
+    --text: #25243a;
+    --muted: #77778a;
+    --border: #e8e7f0;
+    --success: #168653;
+    --success-bg: #e5f7ed;
+    --pending: #bd801c;
+    --pending-bg: #fff3d9;
+}
+
+/* =========================
+   2. RESET AND BOX MODEL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+/* Visible keyboard focus */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #9b91ff;
+    outline-offset: 3px;
+}
+
+/* =========================
+   3. NAVIGATION
+========================= */
+
+.navbar {
+    min-height: 75px;
+    padding: 15px 8%;
+    background: var(--surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar nav a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.navbar nav a:hover {
+    color: var(--primary);
+}
+
+.navbar nav .nav-button {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 7px;
+}
+
+/* =========================
+   4. BUTTONS
+========================= */
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.primary-button {
+    background: var(--primary);
+    color: white;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+.secondary-button {
+    border-color: var(--border);
+    color: var(--text);
+    background: white;
+}
+
+.secondary-button:hover {
+    border-color: var(--primary);
+}
+
+/* =========================
+   5. LANDING PAGE
+========================= */
+
+.hero {
+    padding: 85px 8%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 60px;
+    min-height: 520px;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+    display: block;
+}
+
+.hero-description {
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 28px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-card {
+    background: var(--surface);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 35px rgba(40, 35, 90, 0.08);
+}
+
+.hero-card h2 {
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.stat strong {
+    color: var(--primary);
+}
+
+.progress {
+    height: 9px;
+    background: #e9e6ff;
+    border-radius: 10px;
+    margin-top: 22px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 67%;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.progress-text {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+/* =========================
+   6. FEATURES - CSS GRID
+========================= */
+
+.features {
+    padding: 65px 8%;
+    background: white;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.section-heading h2 {
+    font-size: 30px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.feature-card {
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.feature-icon {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    background: #eeecff;
+    color: var(--primary);
+    border-radius: 9px;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* =========================
+   7. CALL TO ACTION
+========================= */
+
+.cta {
+    padding: 65px 8%;
+    text-align: center;
+}
+
+.cta h2 {
+    margin-bottom: 10px;
+}
+
+.cta p {
+    color: var(--muted);
+    margin-bottom: 22px;
+}
+
+.footer {
+    background: white;
+    text-align: center;
+    padding: 22px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================
+   8. SIGNUP FORM
+========================= */
+
+.form-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 35px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(40, 35, 90, 0.08);
+}
+
+.form-container > .logo {
+    display: inline-block;
+    margin-bottom: 22px;
+}
+
+.form-container h1 {
+    font-size: 27px;
+}
+
+.form-container > p {
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+.form-group input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: white;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+    outline: 2px solid #e2deff;
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+    border-color: #d64040;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: 17px;
+    height: 17px;
+}
+
+.checkbox-group label {
+    margin: 0;
+    font-weight: normal;
+}
+
+.form-button {
+    width: 100%;
+    border: none;
+}
+
+.form-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.form-footer a {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* =========================
+   9. DASHBOARD
+========================= */
+
+.dashboard {
+    padding: 50px 8%;
+}
+
+.welcome {
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    font-size: 32px;
+}
+
+.welcome p:last-child {
+    color: var(--muted);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.stat-card p {
+    color: var(--muted);
+}
+
+.stat-card h2 {
+    font-size: 30px;
+    color: var(--primary);
+}
+
+.recent-tasks {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-title a {
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+}
+
+.task-item h3 {
+    font-size: 16px;
+}
+
+.task-item p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.completed {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.pending {
+    background: var(--pending-bg);
+    color: var(--pending);
+}
+
+/* =========================
+   10. RESPONSIVE DESIGN
+========================= */
+
+/* Tablets and smaller screens */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .navbar nav {
+        gap: 15px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 55px 6%;
+        gap: 35px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard {
+        padding: 35px 5%;
+    }
+}
+
+/* Mobile screens - 375px included */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .navbar nav a {
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 40px 5%;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions a {
+        width: 100%;
+    }
+
+    .features {
+        padding: 45px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 24px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .dashboard {
+        padding: 30px 5%;
+    }
+
+    .welcome h1 {
+        font-size: 27px;
+    }
+
+    .recent-tasks {
+        padding: 17px;
+    }
+
+    .task-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .section-title {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .form-container {
+        padding: 25px 20px;
+    }
+}
