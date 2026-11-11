@@ -1,0 +1,6 @@
+-- Calculate the total population of cities located in Asian countries.
+SELECT SUM(CITY.POPULATION)
+FROM CITY
+INNER JOIN COUNTRY
+ON CITY.COUNTRYCODE = COUNTRY.CODE
+WHERE COUNTRY.CONTINENT = 'Asia';
