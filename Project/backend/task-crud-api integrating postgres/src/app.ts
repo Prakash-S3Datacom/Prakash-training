@@ -1,5 +1,6 @@
 
 import express from "express";
+import cors from "cors";
 
 import taskRoutes from "./routes/task.routes.js";
 
@@ -13,6 +14,12 @@ import {
 
 const app = express();
 
+// Allow requests from React frontend
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
+
+// Parse incoming JSON
 app.use(express.json());
 
 // Swagger API documentation
@@ -21,29 +28,8 @@ app.use(
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec)
 );
- 
+
 // Health check
-/**
- * @swagger
- * /health:
- *   get:
- *     summary: Check API health
- *     tags: [Health]
- *     responses:
- *       200:
- *         description: API is running successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: true
- *                 message:
- *                   type: string
- *                   example: Task CRUD API is running
- */
 app.get("/health", (_req, res) => {
     res.status(200).json({
         success: true,

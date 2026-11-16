@@ -11,6 +11,23 @@ export interface Task {
     updatedAt: Date;
 }
 
+export interface TaskQuery {
+    page: number;
+    limit: number;
+    search: string;
+    status?: TaskStatus;
+    sortBy: "id" | "title" | "status" | "createdAt";
+    sortOrder: "asc" | "desc";
+}
+
+export interface TaskPageResult {
+    tasks: Task[];
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+}
+
 type TaskRow = {
     id: number;
     title: string;
@@ -30,14 +47,64 @@ const returningColumns = `
 `;
 
 class TaskRepository {
-    async findAll(): Promise<Task[]> {
-        const result = await pool.query<TaskRow>(
-            `SELECT ${returningColumns}
-             FROM tasks
-             ORDER BY id ASC`
+    async findAll(query: TaskQuery): Promise<TaskPageResult> {
+        const conditions: string[] = [];
+        const values: unknown[] = [];
+
+        if (query.search) {
+            values.push(`%${query.search}%`);
+            conditions.push(
+                `(title ILIKE $${values.length} OR description ILIKE $${values.length})`
+            );
+        }
+
+        if (query.status) {
+            values.push(query.status);
+            conditions.push(`status = $${values.length}`);
+        }
+
+        const whereClause = conditions.length
+            ? `WHERE ${conditions.join(" AND ")}`
+            : "";
+
+        // Get the total number of matching records.
+        const countResult = await pool.query<{ total: string }>(
+            `SELECT COUNT(*) AS total FROM tasks ${whereClause}`,
+            values
         );
 
-        return result.rows;
+        const total = Number(countResult.rows[0]?.total ?? 0);
+
+        // Map API sort fields to trusted database column names.
+        const sortColumns = {
+            id: "id",
+            title: "title",
+            status: "status",
+            createdAt: "created_at"
+        };
+
+        const sortColumn = sortColumns[query.sortBy];
+        const offset = (query.page - 1) * query.limit;
+
+        const dataValues = [...values, query.limit, offset];
+
+        const tasksResult = await pool.query<TaskRow>(
+            `SELECT ${returningColumns}
+             FROM tasks
+             ${whereClause}
+             ORDER BY ${sortColumn} ${query.sortOrder.toUpperCase()}, id DESC
+             LIMIT $${dataValues.length - 1}
+             OFFSET $${dataValues.length}`,
+            dataValues
+        );
+
+        return {
+            tasks: tasksResult.rows,
+            total,
+            page: query.page,
+            limit: query.limit,
+            totalPages: Math.ceil(total / query.limit)
+        };
     }
 
     async findById(id: number): Promise<Task | undefined> {

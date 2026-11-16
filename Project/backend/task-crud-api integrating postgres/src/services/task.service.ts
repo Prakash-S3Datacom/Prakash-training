@@ -1,6 +1,9 @@
 
 import { taskRepository } from "../repositories/task.repository.js";
-import type { Task } from "../repositories/task.repository.js";
+import type {
+    Task,
+    TaskQuery
+} from "../repositories/task.repository.js";
 import type {
     CreateTaskInput,
     UpdateTaskInput
@@ -8,8 +11,8 @@ import type {
 import { AppError } from "../middleware/error.middleware.js";
 
 class TaskService {
-    async getAllTasks(): Promise<Task[]> {
-        return await taskRepository.findAll();
+    async getAllTasks(query: TaskQuery) {
+        return await taskRepository.findAll(query);
     }
 
     async getTaskById(id: number): Promise<Task> {
