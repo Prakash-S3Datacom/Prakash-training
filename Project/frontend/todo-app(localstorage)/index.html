@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow - Todo Application</title>
+
+    <link rel="stylesheet" href="index.css">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <h1>TaskFlow</h1>
+
+        <p>Manage your daily tasks efficiently</p>
+
+        <!-- Task Form -->
+        <form id="taskForm">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter your task..."
+                aria-label="Enter your task"
+                required
+            >
+
+            <button type="submit">Add Task</button>
+
+        </form>
+
+        <!-- Task Counter -->
+        <h3>
+            Total Tasks:
+            <span id="taskCount">0</span>
+        </h3>
+
+        <!-- Task List -->
+        <ul id="taskList" aria-label="Task list"></ul>
+
+        <p id="emptyMessage">No tasks yet. Add your first task!</p>
+
+    </main>
+
+</body>
+</html>

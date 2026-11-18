@@ -1,0 +1,156 @@
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    padding: 20px;
+}
+
+/* Main Container */
+.container {
+    max-width: 600px;
+    width: 100%;
+    margin: 50px auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #2563eb;
+}
+
+/* Description */
+p {
+    text-align: center;
+    margin: 10px 0 25px;
+    color: gray;
+}
+
+/* Form */
+form {
+    display: flex;
+    gap: 10px;
+}
+
+/* Input */
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 2px;
+}
+
+/* Task Heading */
+h3 {
+    margin: 25px 0 15px;
+}
+
+/* Task List */
+li {
+    list-style: none;
+    background-color: #f1f5f9;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Task Text */
+.task-text {
+    overflow-wrap: anywhere;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.complete-btn {
+    background-color: #16a34a;
+}
+
+.delete-btn {
+    background-color: #dc2626;
+}
+
+/* Empty Message */
+#emptyMessage {
+    margin-top: 20px;
+    color: gray;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        margin: 25px auto;
+        padding: 18px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form button {
+        width: 100%;
+    }
+
+    li {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

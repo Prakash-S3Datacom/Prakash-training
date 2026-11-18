@@ -1,0 +1,127 @@
+
+.app {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.app h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Button */
+.btn {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: white;
+}
+
+/* Card */
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px #00000012;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.card-content {
+  margin: 20px 0;
+}
+
+.card-footer {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+/* Task item */
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Input */
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.input-group input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.input-error {
+  color: #dc2626;
+  font-size: 13px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: #00000080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 22px;
+  border-radius: 10px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
