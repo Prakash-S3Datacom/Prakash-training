@@ -40,7 +40,13 @@ export async function getTaskPage(
         query.set("status", params.status);
     }
 
-    const response = await fetch(`${API_URL}?${query.toString()}`);
+    const response = await fetch(
+        `${API_URL}?${query.toString()}`,
+        {
+            credentials: "include"
+        }
+    );
+
     const result = await response.json();
 
     if (!response.ok) {
@@ -55,48 +61,66 @@ export async function getTaskPage(
     };
 }
 
-// Kept for compatibility with the existing App until we replace it
-// with the new routed pages.
+// Kept for compatibility with the existing App.
 export async function getTasks(): Promise<Task[]> {
     const result = await getTaskPage();
     return result.tasks;
 }
 
+// Fetch one task
 export async function getTaskById(id: number): Promise<Task> {
-    const response = await fetch(`${API_URL}/${id}`);
+    const response = await fetch(`${API_URL}/${id}`, {
+        credentials: "include"
+    });
+
     return handleResponse<Task>(response);
 }
 
-export async function createTask(task: CreateTaskInput): Promise<Task> {
+// Create task
+export async function createTask(
+    task: CreateTaskInput
+): Promise<Task> {
     const response = await fetch(API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(task)
     });
 
     return handleResponse<Task>(response);
 }
 
+// Update task
 export async function updateTask(
     id: number,
     task: UpdateTaskInput
 ): Promise<Task> {
     const response = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(task)
     });
 
     return handleResponse<Task>(response);
 }
 
+// Delete task
 export async function deleteTask(id: number): Promise<void> {
     const response = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        credentials: "include"
     });
 
     if (!response.ok) {
         const result = await response.json();
-        throw new Error(result.message || "Unable to delete task");
+
+        throw new Error(
+            result.message || "Unable to delete task"
+        );
     }
 }

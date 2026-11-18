@@ -239,3 +239,37 @@ button:disabled {
         gap: 10px;
     }
 }
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.user-info p {
+    margin: 4px 0;
+}
+
+.user-role {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+.logout-button {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    background: #dc2626;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.logout-button:hover {
+    background: #b91c1c;
+}

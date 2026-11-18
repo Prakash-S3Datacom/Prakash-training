@@ -1,13 +1,19 @@
 
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
+
 import {
     getTaskPage,
     createTask,
     updateTask,
     deleteTask
 } from "../services/taskService";
+
+import { useAuth } from "../context/AuthContext";
+
 import type {
     Task,
     TaskStatus,
@@ -18,6 +24,9 @@ import type {
 } from "../types/task";
 
 function TaskListPage() {
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
+
     const [tasks, setTasks] = useState<Task[]>([]);
     const [pagination, setPagination] = useState<TaskPagination>({
         total: 0,
@@ -36,6 +45,17 @@ function TaskListPage() {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState("");
+
+    // Logout handler
+    async function handleLogout() {
+        try {
+            await logout();
+        } catch (err) {
+            console.error("Logout API error:", err);
+        } finally {
+            navigate("/login", { replace: true });
+        }
+    }
 
     const loadTasks = useCallback(async () => {
         try {
@@ -80,7 +100,7 @@ function TaskListPage() {
             } else {
                 await createTask(taskData);
                 setPage(1);
-                // The page change triggers a fresh request.
+
                 if (page === 1) {
                     await loadTasks();
                 }
@@ -111,7 +131,6 @@ function TaskListPage() {
                 setEditingTask(null);
             }
 
-            // If the last item on a page is deleted, move back one page.
             if (tasks.length === 1 && page > 1) {
                 setPage((currentPage) => currentPage - 1);
             } else {
@@ -149,8 +168,28 @@ function TaskListPage() {
     return (
         <main className="app-container">
             <header className="app-header">
-                <h1>TaskFlow</h1>
-                <p>Manage your tasks efficiently</p>
+                <div>
+                    <h1>TaskFlow</h1>
+                    <p>Manage your tasks efficiently</p>
+                </div>
+
+                <div className="user-info">
+                    <div>
+                        <strong>{user?.name}</strong>
+                        <p>{user?.email}</p>
+                        <span className="user-role">
+                            {user?.role}
+                        </span>
+                    </div>
+
+                    <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="logout-button"
+                    >
+                        Logout
+                    </button>
+                </div>
             </header>
 
             {error && (
@@ -236,7 +275,9 @@ function TaskListPage() {
                             <button
                                 type="button"
                                 disabled={page <= 1 || loading}
-                                onClick={() => setPage((current) => current - 1)}
+                                onClick={() =>
+                                    setPage((current) => current - 1)
+                                }
                             >
                                 Previous
                             </button>
@@ -250,7 +291,9 @@ function TaskListPage() {
                                 disabled={
                                     page >= pagination.totalPages || loading
                                 }
-                                onClick={() => setPage((current) => current + 1)}
+                                onClick={() =>
+                                    setPage((current) => current + 1)
+                                }
                             >
                                 Next
                             </button>

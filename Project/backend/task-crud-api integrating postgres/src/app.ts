@@ -1,8 +1,11 @@
 
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
+import { verifyToken } from "./middleware/auth.middleware.js";
 import taskRoutes from "./routes/task.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./config/swagger.js";
@@ -16,11 +19,15 @@ const app = express();
 
 // Allow requests from React frontend
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173",
+    credentials: true
 }));
 
 // Parse incoming JSON
 app.use(express.json());
+
+// Parse incoming cookies
+app.use(cookieParser());
 
 // Swagger API documentation
 app.use(
@@ -37,8 +44,11 @@ app.get("/health", (_req, res) => {
     });
 });
 
-// Task routes
-app.use("/api/tasks", taskRoutes);
+// Authentication routes
+app.use("/api/auth", authRoutes);
+
+// Protected task routes
+app.use("/api/tasks", verifyToken, taskRoutes);
 
 // Unknown endpoint
 app.use((_req, _res, next) => {
