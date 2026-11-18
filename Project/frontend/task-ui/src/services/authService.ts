@@ -1,5 +1,7 @@
 
-const API_URL = "http://localhost:3000/api/auth";
+// const API_URL = "http://localhost:3000/api/auth";
+
+const API_URL = "/api/auth";
 
 export interface User {
     id: number;

@@ -7,7 +7,8 @@ import type {
     TaskPageResponse
 } from "../types/task";
 
-const API_URL = "http://localhost:3000/api/tasks";
+// const API_URL = "http://localhost:3000/api/tasks";
+const API_URL = "/api/tasks";
 
 async function handleResponse<T>(response: Response): Promise<T> {
     const result = await response.json();

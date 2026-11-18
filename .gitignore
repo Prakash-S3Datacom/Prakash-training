@@ -21,3 +21,6 @@ node_modules/
 
 # Accidental temporary file
 tatus
+
+# Test coverage reports
+coverage/

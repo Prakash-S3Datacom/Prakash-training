@@ -18,8 +18,14 @@ import {
 const app = express();
 
 // Allow requests from React frontend
+// app.use(cors({
+//     origin: "http://localhost:5173",
+//     credentials: true
+// }));
+
+// This supports both local development and Docker.
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true
 }));
 

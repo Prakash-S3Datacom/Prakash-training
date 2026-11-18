@@ -20,7 +20,6 @@ export const createTaskSchema = z.object({
 
     status: taskStatusSchema.default("PENDING")
 });
-
 export const updateTaskSchema = z.object({
     title: z.string()
         .trim()
