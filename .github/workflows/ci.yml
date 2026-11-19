@@ -10,6 +10,24 @@ jobs:
     name: Backend Checks
     runs-on: ubuntu-latest
 
+    env:
+      DB_PASSWORD: postgres
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: taskdb_test
+        ports:
+          - 5434:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d taskdb_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     defaults:
       run:
         working-directory: Project/backend/task-crud-api integrating postgres
@@ -31,8 +49,37 @@ jobs:
       - name: Build backend
         run: npm run build
 
-      - name: Run backend tests
+      - name: Run unit tests
         run: npm test
+
+      - name: Create test database tables
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from "node:fs";
+          import pg from "pg";
+
+          const { Pool } = pg;
+
+          const pool = new Pool({
+            host: "localhost",
+            port: 5434,
+            user: "postgres",
+            password: process.env.DB_PASSWORD,
+            database: "taskdb_test"
+          });
+
+          try {
+            await pool.query(
+              readFileSync("database/schema.sql", "utf8")
+            );
+            console.log("Test database tables created successfully.");
+          } finally {
+            await pool.end();
+          }
+          NODE
+
+      - name: Run integration tests
+        run: npm run test:integration
 
   frontend:
     name: Frontend Checks

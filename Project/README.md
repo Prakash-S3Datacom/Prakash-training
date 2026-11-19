@@ -255,13 +255,21 @@ For Docker Compose, the database host and port are configured internally as `db:
 
 ## 11. Testing
 
-Backend unit tests are implemented using Vitest.
+Backend testing is implemented using Vitest.
+
+- 8 service-layer unit tests.
+- 14 API integration tests using Supertest and PostgreSQL.
+- Service-layer line coverage: 94.73%.
+
 
 Run tests:
 
 ```bash
 npm test
 ```
+Run integration tests:
+
+npm run test:integration
 
 Run tests with coverage:
 
@@ -271,6 +279,12 @@ npm run test:coverage
 
 The task service has achieved more than 80% line coverage.
 
+
+```markdown
+
+**Section 12 – Continuous Integration**
+
+```markdown
 ## 12. Continuous Integration
 
 GitHub Actions automatically runs checks on pushes and pull requests.
@@ -278,8 +292,10 @@ GitHub Actions automatically runs checks on pushes and pull requests.
 The workflow performs:
 
 - Dependency installation.
+- PostgreSQL test database setup.
 - Backend TypeScript build.
 - Backend unit tests.
+- Backend API integration tests.
 - Frontend lint checks.
 - Frontend production build.
 
@@ -295,7 +311,6 @@ A Docker volume is used to persist database data.
 
 ## 14. Future Improvements
 
-- API integration testing.
 - Cloud deployment.
 - File upload functionality.
 - Additional frontend and backend test coverage.
@@ -329,5 +344,5 @@ A Docker volume is used to persist database data.
 
 ---
 
-**Project:** Task Management Application  
-**Version:** 1.0.0 (planned release)
+**Project:** Task Management Application
+**Version:** 1.0.0
