@@ -13,6 +13,7 @@ jobs:
       DB_PASSWORD: postgres
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_BUCKET: task-attachments
 
     services:
       postgres:
