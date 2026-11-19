@@ -5,6 +5,8 @@ import type {
     NextFunction
 } from "express";
 
+import multer from "multer";
+
 export class AppError extends Error {
     constructor(
         public statusCode: number,
@@ -22,10 +24,28 @@ export function errorHandler(
     _next: NextFunction
 ): void {
 
+    // Application errors
     if (error instanceof AppError) {
         res.status(error.statusCode).json({
             success: false,
             message: error.message
+        });
+        return;
+    }
+
+    // Multer upload errors
+    if (error instanceof multer.MulterError) {
+        const statusCode =
+            error.code === "LIMIT_FILE_SIZE" ? 413 : 400;
+
+        const message =
+            error.code === "LIMIT_FILE_SIZE"
+                ? "File size must not exceed 5 MB"
+                : error.message;
+
+        res.status(statusCode).json({
+            success: false,
+            message
         });
         return;
     }

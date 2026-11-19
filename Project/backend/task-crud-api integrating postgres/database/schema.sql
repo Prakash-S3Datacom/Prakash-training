@@ -23,3 +23,21 @@ CREATE TABLE IF NOT EXISTS users (
     CONSTRAINT valid_user_role
     CHECK (role IN ('ADMIN', 'USER'))
 );
+-- Task attachments
+CREATE TABLE IF NOT EXISTS attachments (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    task_id INTEGER NOT NULL REFERENCES tasks(id) ON DELETE CASCADE,
+    original_name VARCHAR(255) NOT NULL,
+    stored_name VARCHAR(255) NOT NULL UNIQUE,
+    mime_type VARCHAR(127) NOT NULL,
+    file_size INTEGER NOT NULL
+        CHECK (file_size > 0 AND file_size <= 5242880),
+    uploaded_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_attachments_task_id
+ON attachments(task_id);
+
+CREATE INDEX IF NOT EXISTS idx_attachments_uploaded_by
+ON attachments(uploaded_by);

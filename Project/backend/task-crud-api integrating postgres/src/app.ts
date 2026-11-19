@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import { verifyToken } from "./middleware/auth.middleware.js";
 import taskRoutes from "./routes/task.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-
+import attachmentRoutes from "./routes/attachment.routes.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./config/swagger.js";
 
@@ -52,6 +52,9 @@ app.get("/health", (_req, res) => {
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
+
+// Protected attachment routes
+app.use("/api", verifyToken, attachmentRoutes);
 
 // Protected task routes
 app.use("/api/tasks", verifyToken, taskRoutes);

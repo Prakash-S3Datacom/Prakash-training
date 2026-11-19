@@ -24,3 +24,11 @@ tatus
 
 # Test coverage reports
 coverage/
+# Uploaded user files
+uploads/
+# Database backups and SQL dumps
+*.sql
+
+# Local environment files
+.env
+.env.*

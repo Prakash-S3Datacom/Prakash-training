@@ -53,3 +53,13 @@ export interface TaskPageResponse {
     tasks: Task[];
     pagination: TaskPagination;
 }
+export interface Attachment {
+    id: number;
+    task_id: number;
+    original_name: string;
+    stored_name: string;
+    mime_type: string;
+    file_size: number;
+    uploaded_by: number | null;
+    created_at: string;
+}

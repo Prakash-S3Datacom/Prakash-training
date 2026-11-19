@@ -1,6 +1,6 @@
-
 import type {
     Task,
+    Attachment,
     CreateTaskInput,
     UpdateTaskInput,
     TaskListParams,
@@ -123,5 +123,81 @@ export async function deleteTask(id: number): Promise<void> {
         throw new Error(
             result.message || "Unable to delete task"
         );
+    }
+}
+// Get attachments for a task
+export async function getTaskAttachments(
+    taskId: number
+): Promise<Attachment[]> {
+    const response = await fetch(
+        `${API_URL}/${taskId}/attachments`,
+        { credentials: "include" }
+    );
+
+    return handleResponse<Attachment[]>(response);
+}
+
+// Upload attachment
+export async function uploadAttachment(
+    taskId: number,
+    file: File
+): Promise<Attachment> {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch(
+        `${API_URL}/${taskId}/attachments`,
+        {
+            method: "POST",
+            credentials: "include",
+            body: formData
+        }
+    );
+
+    return handleResponse<Attachment>(response);
+}
+
+// Download attachment
+export async function downloadAttachment(
+    attachment: Attachment
+): Promise<void> {
+    const response = await fetch(
+        `/api/attachments/${attachment.id}/download`,
+        { credentials: "include" }
+    );
+
+    if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.message || "Unable to download file");
+    }
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = attachment.original_name;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+}
+
+// Delete attachment
+export async function deleteAttachment(
+    attachmentId: number
+): Promise<void> {
+    const response = await fetch(
+        `/api/attachments/${attachmentId}`,
+        {
+            method: "DELETE",
+            credentials: "include"
+        }
+    );
+
+    if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.message || "Unable to delete attachment");
     }
 }
