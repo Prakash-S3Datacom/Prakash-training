@@ -1,4 +1,3 @@
-
 name: Task Management CI
 
 on:
@@ -12,6 +11,8 @@ jobs:
 
     env:
       DB_PASSWORD: postgres
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
 
     services:
       postgres:
